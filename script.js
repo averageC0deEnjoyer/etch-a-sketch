@@ -21,9 +21,13 @@ const divContainer = document.querySelector('.container');
         divContainer.appendChild(div);
     };
     divChilds = document.querySelectorAll('.div-child');
-    divChilds.forEach(div=> {
-        div.addEventListener('mouseover', ()=> {
-            div.style.backgroundColor = 'black';
+    divChilds.forEach(div => {
+        div.addEventListener('mouseover', (event)=> {
+            if(event.target.style.backgroundColor == ''){
+                event.target.style.backgroundColor = 'rgba(0,0,0,0.5)';
+            } else if (event.target.style.backgroundColor == 'rgba(0,0,0,0.5)') {
+                event.target.style.backgroundColor = 'rgba(0,0,0,1)'; //how to add opacity
+            }
         })
     })
 }
@@ -58,7 +62,10 @@ blackBtn.addEventListener('click', ()=> {
     divChilds = document.querySelectorAll('.div-child');
     divChilds.forEach(div => {
         div.addEventListener('mouseover', () => {
-            div.style.backgroundColor = 'black';
+            div.style.backgroundColor = 'rgba(0,0,0,0.5)';
+            if (div.style.backgroundColor == 'rgba(0,0,0,0.5)') {
+                div.style.backgroundColor = 'rgba(0,0,0,1)';
+            }
         })
     })
 })
