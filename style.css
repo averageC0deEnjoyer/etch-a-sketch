@@ -1,8 +1,61 @@
-.div-container > * {
+.container > * {
     display: flex;
-
 }
  
-.div-container > * > *:hover {
+.container > * > * {
+    background-color: white;
+    /* transition: all 0.01s ease-out; */
+}
+
+.black {
     background-color: black;
+    opacity: 30%;
+}
+
+.black1 {
+    background-color: black;
+    opacity: 60%;
+}
+
+.black2 {
+    background-color: black;
+    opacity: 100%;
+}
+
+.container {
+    border: 1px solid black;
+    width: 400px;
+    height: 400px;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.button {
+    margin-bottom: 30px;
+    margin-top: 30px;
+    border: none;
+    background-color: lightgrey;
+    padding: 5px 5px;
+    border-radius: 4px; 
+}
+
+h1 {
+    font-size: 40px;
+    color: black;
+}
+
+.menu{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.slider-text {
+    text-align: center;
 }

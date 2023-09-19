@@ -1,18 +1,119 @@
-parentBody = document.body;
-divContainer = document.createElement('div');
-divContainer.setAttribute('class','div-container')
-parentBody.appendChild(divContainer);
-for(i=1; i<=8; i++) {
-    div = document.createElement('div');
-    div.setAttribute('class', `div${i}`);
-    for(j=1; j<=8; j++){
-        divChild = document.createElement('div');
-        divChild.setAttribute('class',`div${i}-child${j}`);
-        divChild.style.width = '20px';
-        divChild.style.height = '20px';
-        divChild.style.backgroundColor = 'white';
-        divChild.style.border = '1px black solid'
-        div.appendChild(divChild); //using closure (access parent variable)
-    }
-    divContainer.appendChild(div);
+//dont style using inline/from JS, cause it wont be override using div/class in the css
+
+
+
+
+function createGrid(n, color){
+const divContainer = document.querySelector('.container');
+    
+    divContainer.innerHTML = ''; // reset the container
+    for(let i=1; i<=n; i++) {
+        div = document.createElement('div');
+        // div.setAttribute('class', `div${i}`); doesnt really need this i think
+        for(let j=1; j<=n; j++){
+            divChild = document.createElement('div');
+            // divChild.setAttribute('class',`div${i}-child${j}`);
+            divChild.setAttribute('class', 'div-child');
+            divChild.style.width = `${400/n}px`;
+            divChild.style.height = `${400/n}px`;
+            div.appendChild(divChild); //using closure (access parent variable)
+        }
+        divContainer.appendChild(div);
+    };
+    divChilds = document.querySelectorAll('.div-child');
+    divChilds.forEach(div=> {
+        div.addEventListener('mouseover', ()=> {
+            div.style.backgroundColor = 'black';
+        })
+    })
 }
+
+
+
+createGrid(32);
+
+slider = document.querySelector('.slider');
+sliderText = document.querySelector('.slider-text');
+sliderText.textContent = '32x32'
+slider.addEventListener('input', ()=> {
+    console.log(slider.value);
+    sliderText.textContent = `${slider.value}x${slider.value}`;
+    createGrid(slider.value);
+});
+
+
+
+colorPickerBtn = document.querySelector('#color-picker');
+colorPickerBtn.addEventListener('click', () => {
+    divChilds = document.querySelectorAll('.div-child');
+    divChilds.forEach(div => {
+        div.addEventListener('mouseover', (event) => {
+            event.target.style.backgroundColor = colorPickerBtn.value;
+        })
+    })
+})
+
+blackBtn = document.querySelector('.black-color.button');
+blackBtn.addEventListener('click', ()=> {
+    divChilds = document.querySelectorAll('.div-child');
+    divChilds.forEach(div => {
+        div.addEventListener('mouseover', () => {
+            div.style.backgroundColor = 'black';
+        })
+    })
+})
+
+
+randomBtn = document.querySelector('.random-color.button');
+randomBtn.addEventListener('click', () => {
+    divChilds = document.querySelectorAll('.div-child');
+    divChilds.forEach(div => {
+        div.addEventListener('mouseover', (event) => {
+            event.target.style.backgroundColor = randomColorGenerator();
+        })
+    })
+})
+
+function randomColorGenerator() {
+    let randomColor = '#'+Math.floor(Math.random()*16777215).toString(16);
+    return randomColor;
+}
+
+
+eraseBtn = document.querySelector('.erase.button');
+eraseBtn.addEventListener('click', ()=> {
+    divChilds = document.querySelectorAll('.div-child');
+    divChilds.forEach(div => {
+        div.addEventListener('mouseover', (event) => {
+            event.target.style.backgroundColor = 'white';
+        })
+    })
+})
+
+
+
+
+
+//for clearing
+clearButton = document.querySelector('.clear.button');
+
+clearButton.addEventListener('click', ()=>{
+    divChilds.forEach(div => {
+        div.style.backgroundColor = 'white';
+    })
+})
+
+
+
+//opacity done
+//random color
+//eraser
+//colorpicker??
+//slidergrid
+
+
+
+blackBtn = document.querySelector('.black-color.button');
+
+
+
